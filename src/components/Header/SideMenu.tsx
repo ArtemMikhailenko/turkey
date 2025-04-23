@@ -40,14 +40,35 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsOpen }) => {
           >
             Türkiye Mart
           </Link>
-          <div className="flex px-6 py-3 space-x-2">
-          <button className="px-3 py-1 bg-gray-100 rounded font-normal text-[18px] leading-[154%]">
-            RU
-          </button>
-          <button className="px-3 py-1 bg-transparent rounded font-normal text-[18px] leading-[154%]">
-            Тенге
-          </button>
-        </div>
+          <div className="inline-flex border border-gray-200 rounded-[4px] divide-x divide-gray-200 overflow-hidden">
+            <button
+              className="
+                flex-1             /* равные части */
+                text-center        /* текст по центру */
+                font-normal        /* font-weight: 400 */
+                text-[14px]        /* font-size: 14px */
+                leading-[168%]     /* line-height: 168% */
+                py-1               /* padding-top/bottom: 4px */
+                px-1
+              "
+            >
+              RU
+            </button>
+            <button
+              className="
+                flex-1
+                text-center
+                font-normal
+                text-[14px]
+                leading-[168%]
+                py-1
+                px-1
+              "
+            >
+              Тенге
+            </button>
+          </div>
+
           <button
             onClick={() => setIsOpen(false)}
             className="p-1 hover:bg-gray-100 rounded-full"
