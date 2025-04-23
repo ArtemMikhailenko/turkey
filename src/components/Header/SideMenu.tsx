@@ -49,7 +49,7 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsOpen }) => {
                 text-[14px]        /* font-size: 14px */
                 leading-[168%]     /* line-height: 168% */
                 py-1               /* padding-top/bottom: 4px */
-                px-1
+                px-[10px]
               "
             >
               RU
@@ -62,7 +62,7 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsOpen }) => {
                 text-[14px]
                 leading-[168%]
                 py-1
-                px-1
+                px-[10px]
               "
             >
               Тенге
