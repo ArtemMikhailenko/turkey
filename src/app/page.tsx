@@ -30,7 +30,15 @@ export default function Home() {
     })),
   }
   return (
-    <div >
+    <div className="max-w-[1040px] mx-auto py-8"><h2
+    style={{
+      fontWeight: 700,
+      fontSize: '46px',
+      lineHeight: '122%',
+    }}
+  >
+    Топ 30 товаров
+  </h2>
        <TopProductsSlider products={mockProducts} />
        <NewArrivals data={mock} />
     </div>

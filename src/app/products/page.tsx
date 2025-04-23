@@ -3,7 +3,12 @@
 import { TopProductsSlider } from '@/components/main/TopProductsSlider'
 import { useState } from 'react'
 import Link from 'next/link'
-
+const mockProducts = Array.from({ length: 30 }).map((_, i) => ({
+  id: i + 1,
+  title: `Футболка с принтом "Chicago" – спортивные брюки-джоггеры №${i + 1}`,
+  price: 6690,
+  imageUrl: '/slider.png',
+}))
 const Breadcrumbs = () => (
   <nav className="text-sm text-gray-500 flex items-center space-x-1 mb-4">
     <a href="/" className="hover:underline flex items-center">
@@ -427,10 +432,11 @@ const NinjagoProductPage = () => {
       
       <ProductTabs />
       
-      <SimilarProducts />
+  
       
       <div className="mt-16">
-        <TopProductsSlider products={[]} />
+      <h2 className="text-2xl font-bold mb-6">Похожие товары</h2>
+        <TopProductsSlider products={mockProducts} />
       </div>
     </div>
   )

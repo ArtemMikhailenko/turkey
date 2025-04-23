@@ -25,15 +25,7 @@ export const TopProductsSlider: FC<TopProductsSliderProps> = ({ products }) => {
     <section className="py-8">
       {/* Заголовок */}
       <div className="mx-auto px-4 flex items-center justify-between mb-4 max-w-[1040px]">
-        <h2
-          style={{
-            fontWeight: 700,
-            fontSize: '46px',
-            lineHeight: '122%',
-          }}
-        >
-          Топ 30 товаров
-        </h2>
+        <div></div>
         <div className="flex space-x-6">
           <button
             className="slider-prev p-2 bg-white shadow rounded-full hover:bg-gray-100"
