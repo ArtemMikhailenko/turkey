@@ -101,9 +101,9 @@ export const TopProductsSlider: FC<TopProductsSliderProps> = ({ products }) => {
                     <div className="font-semibold text-lg md:text-[23px] leading-tight mb-2">
                       {p.price.toLocaleString()} ₸
                     </div>
-                    <button className="w-full h-8 md:h-10 text-xs md:text-sm font-bold rounded-lg py-1 px-2 md:px-4 bg-[#2c7156] text-white hover:bg-[#265e4f]">
-                      Добавить в корзину
-                    </button>
+                    <button className="w-full py-2 text-sm font-bold leading-[168%] rounded-lg bg-[#2c7156] text-white hover:bg-[#265e4f]">
+                    Добавить в корзину
+                  </button>
                   </div>
                 </div>
               </div>
