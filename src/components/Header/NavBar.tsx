@@ -37,7 +37,7 @@ export const NavBar: React.FC = () => {
 
           {/* Center: catalog & search */}
           <div className="flex items-center flex-1 justify-center space-x-4">
-            <div className="relative">
+            <div>
               <button
                 onClick={() => setCatalogOpen(!catalogOpen)}
                 className="flex items-center space-x-1 px-4 py-2"
