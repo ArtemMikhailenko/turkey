@@ -21,7 +21,7 @@ interface TopProductsSliderProps {
 
 export const TopProductsSlider: FC<TopProductsSliderProps> = ({ products }) => {
   return (
-    <section className="py-8">
+    <section className="py-8 px-4 sm:px-0">
       {/* Заголовок с кнопками навигации справа */}
       <div className="mx-auto px-4 flex items-center justify-between mb-4 max-w-[1040px]">
         <h2 className="text-lg md:text-xl font-medium"></h2>

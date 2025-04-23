@@ -2,6 +2,7 @@
 
 import { FC, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export interface Product {
   id: number
@@ -30,76 +31,102 @@ export const NewArrivals: FC<NewArrivalsProps> = ({
 
   return (
     <section className="py-10">
-      <div className="mx-auto px-4 max-w-[1040px]">
-        {/* Заголовки */}
-        <h2
-          className="mb-6 hidden md:block font-bold text-[46px] leading-[122%]"
-        >
+      <div className="mx-auto px-4 max-w-[1200px]">
+        {/* Заголовок */}
+        <h2 className="mb-8 font-bold text-[32px] md:text-[46px] leading-[122%]">
           Только новинки
         </h2>
-        <h2
-          className="mb-6 block md:hidden font-bold text-[32px] leading-tight"
-        >
-          Взгляните ещё на эти товары
-        </h2>
 
-        {/* Мобильные инфоблоки (телефон) */}
-        <div className="space-y-4 mb-8 block md:hidden">
-          {/* ... без изменений */}
-        </div>
+        {/* Информационные блоки */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 justify-center">
+  {[
+    {
+      title: 'Все товары — в одном месте',
+      subtitle: 'Большой выбор товаров из Турции со скидкой',
+      icon: '/icon-all.svg',
+      alt: 'Shopping bag',
+    },
+    {
+      title: 'Цены ниже не бывает',
+      subtitle: 'WOW-цены на всё, что нужно — успей забрать выгодно',
+      icon: '/icon-wow.svg',
+      alt: 'WOW price',
+    },
+    {
+      title: 'Топ-продажи со скидкой',
+      subtitle: 'Топ-продажи по сниженным ценам — бери, пока не разобрали',
+      icon: '/icon-sale.svg',
+      alt: 'Sale',
+    },
+  ].map(({ title, subtitle, icon, alt }, i) => (
+    <div
+      key={i}
+      className="
+        bg-white
+        rounded-[8px]
+        border
+        border-[#2c7156]
+        p-4
+        w-[331px]
+        h-[140px]
+        flex
+        items-center
+        justify-between
+      "
+    >
+      {/* Текст */}
+      <div className="space-y-1">
+        <h3 className="font-semibold text-[23px] leading-[137%] text-gray-800">
+          {title}
+        </h3>
+        <p className="font-light text-[11px] leading-[168%] text-gray-600">
+          {subtitle}
+        </p>
+      </div>
 
-        {/* Навигация по табам (десктоп) */}
-        <div className="border-b border-gray-200 mb-8 hidden md:block">
-          <nav className="flex space-x-8">
-            {tabs.map((tab, i) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(i)}
-                className={`pb-2 text-[18px] font-normal leading-[154%] ${
-                  activeTab === i
-                    ? 'text-[#ee6f2d] border-b-2 border-[#ee6f2d]'
-                    : 'text-[#2a2a2a] hover:text-[#ee6f2d]'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-        </div>
+      {/* Иконка */}
+      <div className="flex-shrink-0">
+        <Image 
+          src={icon}
+          alt={alt}
+          width={80}
+          height={80}
+          className="object-contain"
+        />
+      </div>
+    </div>
+  ))}
+</div>
+
 
         {/* Сетка товаров */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
-          {tabs[activeTab].items.map((p) => (
-            <div
-              key={p.id}
-              className="bg-white rounded-lg shadow flex flex-col overflow-hidden"
-            >
-              {/* Обёртка для картинки с соотношением сторон 1:1 */}
-              <div className="relative w-full aspect-square">
-                {p.imageUrl ? (
+          {/* Карточка товара (повторяющийся элемент) */}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
+            <div key={index} className="bg-white rounded-lg shadow flex flex-col overflow-hidden">
+              <Link href={`/product/${index}`}>
+                <div className="relative w-full aspect-square">
                   <Image
-                    src={p.imageUrl}
-                    alt={p.title}
+                    src="/slider.png"
+                    alt="Футболка с принтом 'Chicago' - спортивные брюки-джоггеры"
                     fill
                     className="object-cover"
                   />
-                ) : (
-                  <div className="flex items-center justify-center h-full text-gray-400">
-                    📷
-                  </div>
-                )}
-              </div>
-
-              {/* Контент карточки */}
+                </div>
+              </Link>
+              
               <div className="flex flex-col flex-1 p-2">
-                <h3 className="text-xs font-light leading-[168%] line-clamp-2 mb-2">
-                  {p.title}
-                </h3>
+                <Link href={`/product/${index}`} className="hover:text-[#2c7156]">
+                  <h3 className="text-xs font-light leading-[168%] line-clamp-2 mb-2">
+                    Футболка с принтом "Chicago" - спортивные брюки-джоггеры
+                  </h3>
+                </Link>
+                
                 <div className="mt-auto">
                   <div className="font-semibold text-lg leading-[137%] mb-2">
-                    {p.price.toLocaleString()} ₸
+                    6 690 ₸
                   </div>
-                  <button className="w-full py-2 text-sm font-bold leading-[168%] rounded-lg bg-[#2c7156] text-white hover:bg-[#265e4f]">
+                  <button className="w-full py-2 text-sm font-medium rounded-lg bg-[#2c7156] text-white hover:bg-[#265e4f]">
                     Добавить в корзину
                   </button>
                 </div>
