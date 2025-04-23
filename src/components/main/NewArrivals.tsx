@@ -31,21 +31,59 @@ export const NewArrivals: FC<NewArrivalsProps> = ({
 
   return (
     <section className="py-10">
-      <div className="container mx-auto px-4">
-        {/* Заголовок */}
-        <h2 className="text-3xl font-bold mb-6">Только новинки</h2>
+      <div className="mx-auto px-4 max-w-[1040px]">
+        {/* Desktop Heading */}
+        <h2
+          style={{ fontWeight: 700, fontSize: '46px', lineHeight: '122%' }}
+          className="mb-6 hidden md:block"
+        >
+          Только новинки
+        </h2>
+        {/* Mobile Heading */}
+        <h2
+          style={{ fontWeight: 700, fontSize: '32px', lineHeight: '1.2' }}
+          className="mb-6 block md:hidden"
+        >
+          Взгляните ещё на эти товары
+        </h2>
 
-        {/* Таб-меню */}
-        <div className="border-b border-gray-200 mb-8">
+        {/* Mobile Info Blocks */}
+        <div className="space-y-4 mb-8 block md:hidden">
+          <div className="flex items-center justify-between p-4 border border-[#2c7156] rounded-lg bg-[#fdfdfd] shadow">
+            <div>
+              <h3 className="font-semibold text-lg">Все товары — в одном месте</h3>
+              <p className="text-sm text-gray-600">Большой набор товаров из Турции со скидкой</p>
+            </div>
+            <Image src="/icon-all.svg" alt="Все товары" width={80} height={80} />
+          </div>
+          <div className="flex items-center justify-between p-4 border border-[#2c7156] rounded-lg bg-[#fdfdfd] shadow">
+            <div>
+              <h3 className="font-semibold text-lg">Цены ниже не бывает</h3>
+              <p className="text-sm text-gray-600">WOW-цены на всё, что нужно — успей забрать выгодно.</p>
+            </div>
+            <Image src="/icon-wow.svg" alt="WOW цены" width={80} height={80} />
+          </div>
+          <div className="flex items-center justify-between p-4 border border-[#2c7156] rounded-lg bg-[#fdfdfd] shadow">
+            <div>
+              <h3 className="font-semibold text-lg">Топ-продажи со скидкой</h3>
+              <p className="text-sm text-gray-600">Топ-продажи по сниженным ценам — бери, пока не разобрали.</p>
+            </div>
+            <Image src="/icon-sale.svg" alt="Sale" width={80} height={80} />
+          </div>
+        </div>
+
+        {/* Tabs Nav (desktop only) */}
+        <div className="border-b border-gray-200 mb-8 hidden md:block">
           <nav className="flex space-x-8">
             {tabs.map((tab, i) => (
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(i)}
-                className={`pb-2 text-lg font-medium ${
+                style={{ fontWeight: 400, fontSize: '18px', lineHeight: '154%' }}
+                className={`pb-2 ${
                   activeTab === i
-                    ? 'text-orange-600 border-b-2 border-orange-600'
-                    : 'text-gray-600 hover:text-orange-600'
+                    ? 'text-[#ee6f2d] border-b border-[#ee6f2d]'
+                    : 'text-[#2a2a2a] hover:text-[#ee6f2d]'
                 }`}
               >
                 {tab.label}
@@ -54,14 +92,23 @@ export const NewArrivals: FC<NewArrivalsProps> = ({
           </nav>
         </div>
 
-        {/* Сетка карточек */}
+        {/* Products Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mb-8">
           {tabs[activeTab].items.map((p) => (
             <div
               key={p.id}
-              className="bg-white rounded-xl shadow flex flex-col overflow-hidden"
+              style={{
+                borderRadius: '8px',
+                width: '188px',
+                height: '329px',
+                boxShadow: '0 1px 4px rgba(12,12,13,0.05),0 1px 4px rgba(12,12,13,0.1)',
+                background: '#fff',
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'hidden',
+              }}
             >
-              <div className="relative h-48 bg-gray-100">
+              <div style={{ width: '189px', height: '189px', position: 'relative' }}>
                 {p.imageUrl ? (
                   <Image
                     src={p.imageUrl}
@@ -75,15 +122,21 @@ export const NewArrivals: FC<NewArrivalsProps> = ({
                   </div>
                 )}
               </div>
-              <div className="p-4 flex-1 flex flex-col">
-                <h3 className="text-sm font-medium mb-2 line-clamp-2">
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '8px' }}>
+                <h3
+                  className="line-clamp-2"
+                  style={{ fontWeight: 300, fontSize: '11px', lineHeight: '168%', margin: 0, marginBottom: 'auto' }}
+                >
                   {p.title}
                 </h3>
-                <div className="mt-auto">
-                  <div className="text-xl font-semibold mb-3">
+                <div style={{ marginTop: 'auto' }}>
+                  <div style={{ fontWeight: 600, fontSize: '23px', lineHeight: '137%', marginBottom: '8px' }}>
                     {p.price.toLocaleString()} ₸
                   </div>
-                  <button className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+                  <button
+                    style={{ fontWeight: 700, fontSize: '14px', lineHeight: '168%', borderRadius: '8px', padding: '8px 16px', width: '170px', height: '40px' }}
+                    className="bg-[#2c7156] text-white hover:bg-[#265e4f]"
+                  >
                     Добавить в корзину
                   </button>
                 </div>
@@ -92,9 +145,9 @@ export const NewArrivals: FC<NewArrivalsProps> = ({
           ))}
         </div>
 
-        {/* Кнопка «Посмотреть все» */}
+        {/* View All Button */}
         <div className="text-center">
-          <button className="px-8 py-3 border border-green-600 text-green-600 rounded-lg hover:bg-green-50">
+          <button className="px-8 py-3 border border-[#2c7156] text-[#2c7156] rounded hover:bg-[#f0f8f7]">
             Посмотреть все
           </button>
         </div>
@@ -102,3 +155,10 @@ export const NewArrivals: FC<NewArrivalsProps> = ({
     </section>
   )
 }
+
+/**
+ * Для работы line-clamp-2 подключи плагин Tailwind:
+ * npm install -D @tailwindcss/line-clamp
+ * и добавь в tailwind.config.js:
+ * plugins: [require('@tailwindcss/line-clamp')]
+ */

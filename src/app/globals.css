@@ -7,8 +7,8 @@
 @import 'swiper/css/navigation';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --strokelight: #e9e9e9;
+  --background: #fdfdfd;
 }
 
 /* 3) Переопределяем CSS-переменные, в том числе шрифты */
