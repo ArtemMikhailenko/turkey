@@ -2,7 +2,6 @@
 
 import { TopProductsSlider } from '@/components/main/TopProductsSlider'
 import { useState } from 'react'
-import Link from 'next/link'
 const mockProducts = Array.from({ length: 30 }).map((_, i) => ({
   id: i + 1,
   title: `Футболка с принтом "Chicago" – спортивные брюки-джоггеры №${i + 1}`,

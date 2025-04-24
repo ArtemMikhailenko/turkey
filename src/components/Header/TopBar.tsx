@@ -6,7 +6,6 @@ import { FaTelegramPlane, FaInstagram, FaWhatsapp, FaTiktok, FaMobileAlt } from 
 export const TopBar: FC = () => (
   <div className="bg-[#ee6f2d] text-white">
     <div className="mx-auto px-4 flex items-center justify-between py-2 max-w-[1040px]">
-      {/* Logo - Only visible on mobile */}
       <div className="block md:hidden">
         <span
           style={{ fontWeight: 700, fontSize: '28px', lineHeight: '1.2' }}
@@ -16,7 +15,7 @@ export const TopBar: FC = () => (
         </span>
       </div>
 
-      {/* Social icons - Hidden on mobile */}
+     
       <div className="hidden sm:flex items-center space-x-4">
         <Link href="#" aria-label="Telegram" className="hover:text-gray-200">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +39,6 @@ export const TopBar: FC = () => (
         </Link>
       </div>
 
-      {/* App Download link - Hidden on small mobile */}
       <div className="hidden md:flex items-center space-x-10">
         <div className="flex items-center space-x-2">
           <FaMobileAlt size={16} className="text-white" />
@@ -64,7 +62,6 @@ export const TopBar: FC = () => (
         </Link>
       </div>
 
-      {/* Language/Currency selector - Always visible */}
       <div className="border border-white rounded overflow-hidden flex">
         <button
           className="px-2 py-1"

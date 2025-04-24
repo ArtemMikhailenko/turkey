@@ -33,79 +33,74 @@ export const NewArrivals: FC<NewArrivalsProps> = ({
     <section className="py-10">
       {/* Центровочный контейнер */}
       <div className="mx-auto max-w-[1200px] px-4 lg:px-0">
-        
         {/* Заголовок */}
         <h2
-          className="
-            mb-8 font-bold
-            text-[32px] md:text-[46px]
-            leading-[122%]
-            px-4 sm:px-0
-          "
+          className="mb-8 font-bold text-[32px] md:text-[46px] leading-[122%] px-4 sm:px-0"
         >
           Только новинки
         </h2>
 
         {/* Промо-карточки */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          {[
-            {
-              title: 'Все товары — в одном месте',
-              subtitle: 'Большой выбор товаров из Турции со скидкой',
-              icon: '/icon-all.svg',
-              alt: 'Shopping bag',
-            },
-            {
-              title: 'Цены ниже не бывает',
-              subtitle: 'WOW-цены на всё, что нужно — успей забрать выгодно',
-              icon: '/icon-wow.svg',
-              alt: 'WOW price',
-            },
-            {
-              title: 'Топ-продажи со скидкой',
-              subtitle: 'Топ-продажи по сниженным ценам — бери, пока не разобрали',
-              icon: '/icon-sale.svg',
-              alt: 'Sale',
-            },
-          ].map(({ title, subtitle, icon, alt }, i) => (
-            <div
-              key={i}
-              className="
-                bg-white rounded-[8px]
-                border border-[#2c7156]
-                p-4
-                w-full              /* мобильные: 100% */
-                sm:w-[331px]        /* sm+: фикс ширина */
-                sm:h-[140px]        /* sm+: фикс высота */
-                flex items-center justify-between
-              "
-            >
-              <div className="flex-1 pr-4 space-y-1">
-                <h3 className="font-semibold text-[23px] leading-[137%] text-gray-800">
-                  {title}
-                </h3>
-                <p className="font-light text-[11px] leading-[168%] text-gray-600">
-                  {subtitle}
-                </p>
+        <div className="mb-8">
+        <div className="grid grid-cols-1 [@media(min-width:640px)]:grid-cols-2 [@media(min-width:900px)]:grid-cols-3 gap-4 mb-8">
+            {[
+              {
+                title: 'Все товары — в одном месте',
+                subtitle: 'Большой выбор товаров из Турции со скидкой',
+                icon: '/icon-all.svg',
+                alt: 'Shopping bag',
+              },
+              {
+                title: 'Цены ниже не бывает',
+                subtitle: 'WOW-цены на всё, что нужно — успей забрать выгодно',
+                icon: '/icon-wow.svg',
+                alt: 'WOW price',
+              },
+              {
+                title: 'Топ-продажи со скидкой',
+                subtitle: 'Топ-продажи по сниженным ценам — бери, пока не разобрали',
+                icon: '/icon-sale.svg',
+                alt: 'Sale',
+              },
+            ].map(({ title, subtitle, icon, alt }, i) => (
+              <div
+                key={i}
+                className="
+                  bg-white rounded-[8px]
+                  border border-[#2c7156]
+                  p-4
+                  w-full              /* полная ширина в колонке */
+                  h-auto sm:h-[140px] /* авто высота на мобилках, фикс на sm+ */
+                  flex items-center justify-between
+                "
+              >
+                <div className="flex-1 pr-4 space-y-1">
+                  <h3 className="font-semibold text-[23px] leading-[137%] text-gray-800">
+                    {title}
+                  </h3>
+                  <p className="font-light text-[11px] leading-[168%] text-gray-600">
+                    {subtitle}
+                  </p>
+                </div>
+                <div className="flex-shrink-0">
+                  <Image
+                    src={icon}
+                    alt={alt}
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                  />
+                </div>
               </div>
-              <div className="flex-shrink-0">
-                <Image
-                  src={icon}
-                  alt={alt}
-                  width={80}
-                  height={80}
-                  className="object-contain"
-                />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Сетка товаров */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
           {[...Array(10)].map((_, idx) => (
             <div key={idx} className="bg-white rounded-lg shadow flex flex-col overflow-hidden">
-              <Link href={`/product/${idx}`}>
+              <Link href={`/product/${idx}`}>  
                 <div className="relative w-full aspect-square">
                   <Image
                     src="/slider.png"
@@ -115,14 +110,12 @@ export const NewArrivals: FC<NewArrivalsProps> = ({
                   />
                 </div>
               </Link>
-              
               <div className="flex flex-col flex-1 p-2">
                 <Link href={`/product/${idx}`} className="hover:text-[#2c7156]">
                   <h3 className="text-xs font-light leading-[168%] line-clamp-2 mb-2">
                     Футболка с принтом "Chicago" - спортивные брюки-джоггеры
                   </h3>
                 </Link>
-                
                 <div className="mt-auto">
                   <div className="font-semibold text-lg leading-[137%] mb-2">
                     6 690 ₸

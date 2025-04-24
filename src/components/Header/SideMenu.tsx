@@ -17,13 +17,11 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsOpen }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex">
-      {/* overlay: полупрозрачный с лёгким размытием */}
       <div
         className="fixed inset-0 bg-black/30 backdrop-blur-sm"
         onClick={() => setIsOpen(false)}
       />
 
-      {/* меню */}
       <div
         className="
           relative bg-white
@@ -78,10 +76,6 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsOpen }) => {
           </button>
         </div>
 
-        {/* язык/валюта */}
-       
-
-        {/* основная навигация */}
         <nav className="mx-6 py-2 border-b border-gray-200">
           <ul className="space-y-1 ">
             <NavItem href="/catalog" label="Каталог" icon={<svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +90,6 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsOpen }) => {
           </ul>
         </nav>
 
-        {/* разделы информации */}
         <div className="mx-6 my-2 ">
           <Section title="Информация о компании" items={[
             { href: '/about', label: 'О нас' },
@@ -118,7 +111,6 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsOpen }) => {
           ]}/>
         </div>
 
-        {/* скачать приложение */}
         <div className="px-6 py-4 border-t flex items-center space-x-3">
           <BsPhone size={20} />
           <Link
@@ -129,7 +121,6 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsOpen }) => {
           </Link>
         </div>
 
-        {/* соцсети */}
         <div className="px-6 py-4 border-t flex space-x-4 mb-6">
           <SocialLink href="https://t.me/turkiyemart"><FaTelegram size={24}/></SocialLink>
           <SocialLink href="https://instagram.com/turkiyemart"><FaInstagram size={24}/></SocialLink>
@@ -141,7 +132,6 @@ export const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsOpen }) => {
   )
 }
 
-// Навигационный пункт
 const NavItem: React.FC<{
   href: string
   label: string
@@ -165,7 +155,6 @@ const NavItem: React.FC<{
   </li>
 )
 
-// Секция со списком ссылок
 const Section: React.FC<{
   title: string
   items: { href: string; label: string }[]
@@ -187,7 +176,6 @@ const Section: React.FC<{
   </div>
 )
 
-// Социальная иконка
 const SocialLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => (
   <Link
     href={href}

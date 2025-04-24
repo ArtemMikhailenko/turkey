@@ -1,4 +1,3 @@
-// components/HeroCarousel.tsx
 'use client'
 
 import { FC } from 'react'
@@ -19,7 +18,7 @@ const slides: Slide[] = [
 ]
 
 export const HeroCarousel: FC = () => (
-  <section className="py-8 px-4 sm:px-0">
+  <section className="py-8 px-4 sm:px-4 md:px-2">
     <div className="max-w-[1040px] mx-auto">
       <Swiper
         modules={[Autoplay, Pagination]}
@@ -29,7 +28,7 @@ export const HeroCarousel: FC = () => (
         className="rounded-lg overflow-hidden"
       >
         {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
+          <SwiperSlide key={slide.id} className="px-2 sm:px-0">
             <div className="w-full h-[180px] sm:h-[250px] md:h-[347px] rounded-lg overflow-hidden">
               <Image
                 src={slide.image}
