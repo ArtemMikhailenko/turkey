@@ -63,11 +63,11 @@ export const TopProductsSlider: FC<TopProductsSliderProps> = ({ products }) => {
               spaceBetween: 20
             },
             768: { 
-              slidesPerView: 3,
+              slidesPerView: 4,
               spaceBetween: 24
             },
             1024: { 
-              slidesPerView: 4,
+              slidesPerView: 5,
               spaceBetween: 24
             },
             1280: { 

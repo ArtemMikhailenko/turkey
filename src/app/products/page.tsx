@@ -39,21 +39,47 @@ const Breadcrumbs = () => (
 )
 
 const ProductGallery = () => { 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = [
+    "/placeholder.png",
+    "/im1.png",
+    "/im2.png",
+    "/im3.png",
+  ];
+  
+  const handlePrevious = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+  
+  const handleNext = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+  
   return (
     <div className="relative">
       <div className="w-full relative">
         <img 
-          src="/placeholder.png" 
+          src={images[currentImageIndex]} 
           alt="LEGO Ninjago Джет" 
           className="w-[508px] h-[508px] object-contain mx-auto"
         />
         <div className="absolute inset-0 flex items-center justify-between px-4">
-          <button className="bg-white rounded-full p-2 shadow-md">
+          <button 
+            className="bg-white rounded-full p-2 shadow-md"
+            onClick={handlePrevious}
+          >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
               <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          <button className="bg-white rounded-full p-2 shadow-md">
+          <button 
+            className="bg-white rounded-full p-2 shadow-md"
+            onClick={handleNext}
+          >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
               <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -61,22 +87,31 @@ const ProductGallery = () => {
         </div>
       </div>
       <div className="flex mt-4 space-x-2 justify-center">
-        <div className="w-[144px] h-[144px] border-2 border-gray-200">
-          <img src="/im1.png" alt="Thumbnail 1" className="w-full h-full object-contain" />
-        </div>
-        <div className="w-[144px] h-[144px] border-2 border-gray-200">
-          <img src="/im2.png" alt="Thumbnail 2" className="w-full h-full object-contain" />
-        </div>
-        <div className="w-[144px] h-[144px] border-2 border-gray-200">
-          <img src="/im3.png" alt="Thumbnail 3" className="w-full h-full object-contain" />
-        </div>
+        {[0, 1, 2].map((index) => (
+          <div 
+            key={index}
+            className={`w-[144px] h-[144px] border-2 cursor-pointer ${currentImageIndex === index + 1 ? 'border-[#ee6f2d]' : 'border-gray-200'}`}
+            onClick={() => setCurrentImageIndex(index + 1)}
+          >
+            <img src={`/im${index + 1}.png`} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-contain" />
+          </div>
+        ))}
       </div>
     </div>
   )
 }
 
 const ProductInfo = () => { 
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState('Standart');
+  
+  // Price configuration based on size
+  const prices = {
+    'Standart': 5400,
+    'Big': 7800
+  };
+  //@ts-ignore
+  const currentPrice = prices[selectedSize];
   
   return (
     <div className="space-y-4">
@@ -111,10 +146,20 @@ const ProductInfo = () => {
       </div>
 
       <div>
-        <div className="text-sm mb-2">Размер: Standart</div>
+        <div className="text-sm mb-2">Размер: {selectedSize}</div>
         <div className="flex items-center space-x-2">
-          <button className="rounded-[30px] px-[12px] py-[4px] border border-[#ee6f2d] text-[#ee6f2d]">Standart</button>
-          <button className="rounded-[30px] px-[12px] py-[4px] border border-gray-300">Big</button>
+          <button 
+            className={`rounded-[30px] px-[12px] py-[4px] border ${selectedSize === 'Standart' ? 'border-[#ee6f2d] text-[#ee6f2d]' : 'border-gray-300'}`}
+            onClick={() => setSelectedSize('Standart')}
+          >
+            Standart
+          </button>
+          <button 
+            className={`rounded-[30px] px-[12px] py-[4px] border ${selectedSize === 'Big' ? 'border-[#ee6f2d] text-[#ee6f2d]' : 'border-gray-300'}`}
+            onClick={() => setSelectedSize('Big')}
+          >
+            Big
+          </button>
         </div>
       </div>
 
@@ -140,7 +185,7 @@ const ProductInfo = () => {
         </div>
       </div>
 
-      <div className="text-3xl font-bold">5 400 ₸</div>
+      <div className="text-3xl font-bold">{currentPrice.toLocaleString()} ₸</div>
 
       <div className="flex space-x-4">
         <button className="px-4 py-2 bg-[#2c7156] text-white rounded">
@@ -430,8 +475,6 @@ const NinjagoProductPage = () => {
       </div>
       
       <ProductTabs />
-      
-  
       
       <div className="mt-16">
       <h2 className="text-2xl font-bold mb-6">Похожие товары</h2>
