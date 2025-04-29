@@ -53,7 +53,7 @@ const ProductGallery = () => {
     );
   }, [images.length]);
   
-  const handleThumbnailClick = useCallback((index) => {
+  const handleThumbnailClick = useCallback((index:number) => {
     setCurrentImageIndex(index + 1);
   }, []);
   
@@ -129,7 +129,7 @@ const ProductInfo = () => {
     'Standart': 5400,
     'Big': 7800
   };
-  
+  //@ts-ignore
   const currentPrice = prices[selectedSize];
   
   return (
