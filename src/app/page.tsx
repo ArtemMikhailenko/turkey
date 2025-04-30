@@ -1,7 +1,6 @@
 import { HeroCarousel } from "@/components/main/HeroCarousel";
-import { NewArrivals, Product } from "@/components/main/NewArrivals";
+import { NewArrivals } from "@/components/main/NewArrivals";
 import { TopProductsSlider } from "@/components/main/TopProductsSlider";
-import Image from "next/image";
 
 export default function Home() {
   const mockProducts = Array.from({ length: 30 }).map((_, i) => ({
