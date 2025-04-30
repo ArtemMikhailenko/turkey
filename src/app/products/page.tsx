@@ -1,6 +1,6 @@
 'use client'
 
-import { TopProductsSlider } from '@/components/main/TopProductsSlider'
+import { TopProductsSlider } from '@/components/product/ProductSlider'
 import { useState, useCallback } from 'react'
 
 const mockProducts = Array.from({ length: 30 }).map((_, i) => ({
@@ -266,14 +266,14 @@ const GeneralCharacteristics = () => {
   return (
     <div className="mb-8">
       <h2 className="text-xl font-bold mb-4">Общие характеристики</h2>
-      <div className="border-t border-gray-200">
-        <div className="flex py-3 border-b border-gray-200">
-          <div className="w-1/4 text-gray-600">Состав</div>
-          <div className="w-3/4">-</div>
+      <div className="">
+        <div className="flex justify-between py-3 border-b border-gray-200 max-w-[500px]">
+          <div className=" text-gray-600">Состав</div>
+          <div className="">-</div>
         </div>
-        <div className="flex py-3 border-b border-gray-200">
-          <div className="w-1/4 text-gray-600">Бренд:</div>
-          <div className="w-3/4">Lego</div>
+        <div className="flex justify-between py-3 border-b border-gray-200 max-w-[500px]">
+          <div className=" text-gray-600">Бренд:</div>
+          <div className="">Lego</div>
         </div>
       </div>
     </div>
@@ -420,21 +420,70 @@ const ProductDescription = () => {
 const ProductTabs = () => { 
   const [activeTab, setActiveTab] = useState('description')
   
+  // Mock review data - you can replace this with actual data from your API or props
+  const reviews = [
+    {
+      id: 1,
+      author: 'Лучинець Юрий',
+      date: '06 августа 2024',
+      rating: 5,
+      text: 'Принтер супер! Настройки легкие и понятные. Главное делать все по инструкции. Качество полностью устраивает. Одним словом - рекомендую.'
+    },
+    {
+      id: 2,
+      author: 'Лучинець Юрий',
+      date: '06 августа 2024',
+      rating: 4,
+      text: 'Принтер супер! Настройки легкие и понятные. Главное делать все по инструкции. Качество полностью устраивает. Одним словом - рекомендую.'
+    },
+    {
+      id: 3,
+      author: 'Лучинець Юрий',
+      date: '06 августа 2024',
+      rating: 5,
+      text: 'Принтер супер! Настройки легкие и понятные. Главное делать все по инструкции. Качество полностью устраивает. Одним словом - рекомендую.'
+    },
+    {
+      id: 4,
+      author: 'Лучинець Юрий',
+      date: '06 августа 2024',
+      rating: 3,
+      text: 'Принтер супер! Настройки легкие и понятные. Главное делать все по инструкции. Качество полностью устраивает. Одним словом - рекомендую.'
+    }
+  ];
+  
+  // Function to render star rating based on rating value
+  const renderStars = (rating:any) => {
+    return (
+      <div className="flex mb-4">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <svg 
+            key={star} 
+            className={`w-5 h-5 md:w-6 md:h-6 ${star <= rating ? 'text-yellow-400' : 'text-gray-300'} fill-current`} 
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+          </svg>
+        ))}
+      </div>
+    );
+  };
+  
   return (
-    <div className="mt-12 ">
+    <div className="mt-8 md:mt-12">
       <div>
-        <div className="flex space-x-8 border-b-1 border-[#e9e9e9]">
+        <div className="flex space-x-4 md:space-x-8 border-b-1 border-[#e9e9e9] overflow-x-auto">
           <button 
-            className={`pb-2 cursor-pointer ${activeTab === 'description' ? 'border-b-2 border-[#ee6f2d] text-[#ee6f2d]' : 'text-gray-500'}`}
+            className={`pb-2 cursor-pointer text-sm md:text-base whitespace-nowrap ${activeTab === 'description' ? 'border-b-2 border-[#ee6f2d] text-[#ee6f2d]' : 'text-gray-500'}`}
             onClick={() => setActiveTab('description')}
           >
             Описание товара
           </button>
           <button 
-            className={`pb-2 cursor-pointer ${activeTab === 'reviews' ? 'border-b-2 border-[#ee6f2d] text-[#ee6f2d]' : 'text-gray-500'}`}
+            className={`pb-2 cursor-pointer text-sm md:text-base whitespace-nowrap ${activeTab === 'reviews' ? 'border-b-2 border-[#ee6f2d] text-[#ee6f2d]' : 'text-gray-500'}`}
             onClick={() => setActiveTab('reviews')}
           >
-            Отзывы 0
+            Отзывы {reviews.length}
           </button>
         </div>
       </div>
@@ -448,8 +497,34 @@ const ProductTabs = () => {
         )}
         
         {activeTab === 'reviews' && (
-          <div className="py-4 text-gray-500">
-            На данный момент отзывов нет.
+          <div className="py-4">
+            <div className="flex flex-col lg:flex-row">
+              <div className="w-full lg:w-3/4 lg:pr-6 lg:border-r lg:border-gray-200 mb-8 lg:mb-0">
+                <div className="max-h-[600px] overflow-y-auto pr-2">
+                  {reviews.map((review) => (
+                    <div key={review.id} className="border border-gray-200 rounded-lg p-4 md:p-6 mb-4">
+                      <div className="flex flex-col md:flex-row md:justify-between mb-4">
+                        <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-0">{review.author}</h3>
+                        <span className="text-sm md:text-base text-gray-500">{review.date}</span>
+                      </div>
+                      {renderStars(review.rating)}
+                      <p className="text-sm md:text-base">{review.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="w-full lg:w-2пше/4 lg:pl-6">
+                <div>
+                  <h2 className="text-xl md:text-2xl font-bold mb-4">Напишите свой отзыв об этом товаре</h2>
+                  <div className="mt-6">
+                    <button className="border border-[#2c7156] text-[#2c7156] rounded-lg px-6 py-3 w-full">
+                      Написать отзыв
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -457,40 +532,6 @@ const ProductTabs = () => {
   )
 }
 
-const SimilarProducts = () => { 
-  return (
-    <section className="mt-16">
-      <h2 className="text-2xl font-bold mb-6">Похожие товары</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {[1, 2, 3, 4, 5].map((item) => (
-          <div key={item} className="border border-gray-200 rounded-lg overflow-hidden">
-            <div className="h-64 bg-gray-100">
-              <img 
-                src="/api/placeholder/400/320" 
-                alt="Product" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="p-4">
-              <div className="text-sm text-gray-600 truncate">
-                Футболка с принтом "Chicago" - спортивные брюки-джоггеры
-              </div>
-              <div className="mt-2 font-semibold">6 690 ₸</div>
-              <button className="mt-3 w-full py-2 bg-[#2c7156] text-white text-sm rounded cursor-pointer">
-                Добавить в корзину
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-8 flex justify-center">
-        <button className="px-8 py-2 border border-[#2c7156] text-[#2c7156] rounded cursor-pointer">
-          Посмотреть все
-        </button>
-      </div>
-    </section>
-  )
-}
 
 const NinjagoProductPage = () => { 
   return (
@@ -507,7 +548,6 @@ const NinjagoProductPage = () => {
       <ProductTabs />
       
       <div className="mt-16">
-      <h2 className="text-2xl font-bold mb-6">Похожие товары</h2>
         <TopProductsSlider products={mockProducts} />
       </div>
     </div>

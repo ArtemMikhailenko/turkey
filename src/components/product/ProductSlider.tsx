@@ -24,12 +24,12 @@ export const TopProductsSlider: FC<TopProductsSliderProps> = ({ products }) => {
     <section className="py-8 px-4">
       {/* Заголовок с кнопками навигации справа */}
       <div className="mx-auto flex items-center justify-between mb-4 max-w-[1040px]">
-      <h2 className="
+        <h2 className="
     font-bold               /* font-weight: 700 */
     text-[28px]             /* базовый размер 28px */
     sm:text-[34px]          /* от 640px — 34px */
     md:text-[46px]          /* от 768px — 46px */
-    leading-[122%]          /* line-height: 122% */">Топ 30 товаров</h2>
+    leading-[122%]          /* line-height: 122% */">Похожие товары</h2>
         
         {/* Стрелки навигации справа */}
         <div className="flex space-x-4">
@@ -83,7 +83,7 @@ export const TopProductsSlider: FC<TopProductsSliderProps> = ({ products }) => {
         >
           {products.map((p) => (
             <SwiperSlide key={p.id}>
-              <div className="flex flex-col overflow-hidden bg-white rounded-lg shadow-md w-full h-auto md:w-[188px] md:h-[339px] mb-2">
+              <div className="flex flex-col overflow-hidden bg-white rounded-lg shadow-md w-full h-auto md:w-[191px] md:h-[339px] mb-2">
                 <div className="relative w-full aspect-square md:w-[189px] md:h-[189px]">
                   {p.imageUrl ? (
                     <Image
@@ -126,10 +126,3 @@ export const TopProductsSlider: FC<TopProductsSliderProps> = ({ products }) => {
     </section>
   )
 }
-
-/**
- * Для работы line-clamp-3 подключи плагин Tailwind:
- * npm install -D @tailwindcss/line-clamp
- * и добавь в tailwind.config.js:
- * plugins: [require('@tailwindcss/line-clamp')]
- */

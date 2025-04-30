@@ -33,18 +33,7 @@ export default function Home() {
   return (
     <div className="max-w-[1040px] mx-auto py-8">
       <HeroCarousel/>
-      <h2
-  className="
-    px-4 sm:px-0            /* отступ по бокам на мобилках */
-    font-bold               /* font-weight: 700 */
-    text-[28px]             /* базовый размер 28px */
-    sm:text-[34px]          /* от 640px — 34px */
-    md:text-[46px]          /* от 768px — 46px */
-    leading-[122%]          /* line-height: 122% */
-  "
->
-  Топ 30 товаров
-</h2>
+      
   
        <TopProductsSlider products={mockProducts} />
        <NewArrivals data={mock} />
