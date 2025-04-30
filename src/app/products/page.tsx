@@ -514,7 +514,7 @@ const ProductTabs = () => {
                 </div>
               </div>
               
-              <div className="w-full lg:w-2пше/4 lg:pl-6">
+              <div className="w-full lg:w-2/4 lg:pl-6">
                 <div>
                   <h2 className="text-xl md:text-2xl font-bold mb-4">Напишите свой отзыв об этом товаре</h2>
                   <div className="mt-6">
