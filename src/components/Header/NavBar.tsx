@@ -10,6 +10,10 @@ export const NavBar: React.FC = () => {
   const [catalogOpen, setCatalogOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const toggleCatalog = () => {
+    setCatalogOpen(prevState => !prevState)
+  }
+
   return (
     <>
       <SideMenu isOpen={menuOpen} setIsOpen={setMenuOpen} />
@@ -35,7 +39,8 @@ export const NavBar: React.FC = () => {
           <div className="flex items-center flex-1 justify-center space-x-4">
             <div>
               <button
-                onClick={() => setCatalogOpen(!catalogOpen)}
+                data-catalog-button
+                onClick={toggleCatalog}
                 className="flex items-center space-x-1 px-4 py-2"
               >
                 <span className="font-normal text-[14px] leading-[168%]">
